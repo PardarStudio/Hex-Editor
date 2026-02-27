@@ -3,149 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HexEditor | Simple & Powerful</title>
+    <title>HexEditor | Industrial File Control</title>
     <style>
         :root {
-            --accent: #00a2ff;
-            --accent-glow: rgba(0, 162, 255, 0.3);
-            --bg: #0a0a0c;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-dim: #a0a0a5;
+            --rust-dark: #3a2316; /* Deep oxidized iron */
+            --rust-main: #8c4e2e; /* Classic bright rust */
+            --metal-dark: #1a1a1c; /* Charcoal / Aged steel */
+            --glow: #ff7700; /* Molten amber accent */
+            --text: #d9cbb6; /* Dusty aged paper color */
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            background-image: 
-                radial-gradient(circle at 50% -20%, #1a1a2e 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, #0d0d15 0%, transparent 40%);
-            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace; /* Monospace for industrial feel */
+            background-color: var(--metal-dark);
+            /* Subtile grunge metal texture overlay */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4eJDAAAAUVBMVEVFRUZGRklJSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSlXN/tU5AAAAGnRSTlMAmZmaYmJiYmJiYmJicnJzc3Nzc3Nzc3Nzc3N4V8tIAAAAcElEQVRIx+3PORKAMAgEQNAnYfH+N+wZ5C8D46V6MUB2SreTBy4S5Xn3C1R4/fXo9G/H4fN3P24H4Xp1+vfjtq+ue3/8eZ/rYj/3eS7ueR/wXf+Af8Mv4FfxK5hX/AnmLX9D2ZpXfN9X3Nc1n8u7bL/4Aj7nCw/v1R5jAAAAAElFTkSuQmCC');
+            color: var(--text);
             margin: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
+            position: relative;
         }
 
-        /* Hero Section */
-        .hero {
-            animation: fadeIn 1s ease-out;
-        }
-
-        .logo-wrapper {
+        /* --- LOGO SECTION --- */
+        .logo-box {
             position: relative;
             display: inline-block;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .logo-wrapper::after {
+        .logo-box::after {
             content: '';
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 150px; height: 150px;
-            background: var(--accent);
-            filter: blur(80px);
-            opacity: 0.4;
+            width: 120px; height: 120px;
+            background: var(--rust-main);
+            filter: blur(70px);
+            opacity: 0.6;
             z-index: -1;
         }
 
         .logo {
-            width: 140px;
-            filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+            width: 160px;
+            filter: drop-shadow(0 0 10px rgba(140, 78, 46, 0.5));
         }
 
+        /* --- TEXT STYLING --- */
         h1 {
             font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
             margin: 0;
-            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            color: #d1bda2;
+            text-shadow: 2px 2px 0 var(--rust-dark), 0 0 15px var(--rust-main);
+            background: linear-gradient(180deg, #d1bda2 60%, var(--rust-main) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .tagline {
-            font-size: 1.25rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 20px auto 40px;
-        }
-
-        /* Button */
-        .download-btn {
-            background: var(--accent);
-            color: #fff;
-            text-decoration: none;
-            padding: 18px 45px;
             font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            display: inline-block;
-            box-shadow: 0 10px 30px var(--accent-glow);
+            color: #8c8375;
+            max-width: 500px;
+            margin: 25px auto 60px;
+            border-top: 1px solid rgba(140, 131, 117, 0.2);
+            border-bottom: 1px solid rgba(140, 131, 117, 0.2);
+            padding: 15px 0;
+            line-height: 1.8;
+        }
+
+        /* --- HOT METAL BUTTON --- */
+        .download-btn {
+            background-color: var(--metal-dark);
+            border: 2px solid var(--rust-main);
+            color: var(--rust-main);
+            text-decoration: none;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Molten center on hover */
         .download-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 162, 255, 0.5);
-            background: #2cb1ff;
+            color: #fff;
+            border-color: var(--glow);
+            background-color: var(--rust-main);
+            box-shadow: 0 0 40px rgba(255, 119, 0, 0.6);
+            transform: scale(1.03);
         }
 
-        /* Showcase / Screenshots */
+        /* Pulsing underglow effect */
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .download-btn:hover::before {
+            opacity: 0.2;
+        }
+
+        /* --- SCREENSHOTS AREA --- */
         .showcase {
-            margin-top: 100px;
+            margin-top: 120px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 40px;
+            position: relative;
         }
 
-        .screen-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 15px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.4s ease;
+        /* Industrial beam separator line */
+        .showcase::before {
+            content: '';
+            position: absolute;
+            top: -60px; left: 50%;
+            transform: translateX(-50%);
+            width: 80%; height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(140, 78, 46, 0.4) 50%, transparent 100%);
         }
 
-        .screen-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
+        .screen-frame {
+            background: var(--metal-dark);
+            border: 1px solid var(--rust-dark);
+            padding: 12px;
+            border-radius: 2px; /* Hard industrial edges */
+            box-shadow: 
+                3px 3px 0 #000, 
+                0 0 20px rgba(140, 78, 46, 0.1);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .screen-card img {
+        .screen-frame:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            border-color: var(--rust-main);
+            box-shadow: 
+                5px 5px 0 #000, 
+                0 0 30px rgba(140, 78, 46, 0.25);
+        }
+
+        .screen-frame img {
             width: 100%;
-            border-radius: 12px;
             display: block;
+            border: 1px solid #000;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* --- FOOTER --- */
         footer {
-            margin-top: 100px;
-            padding-bottom: 50px;
-            color: #444;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            margin-top: 120px;
+            padding-bottom: 60px;
+            color: #555;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .showcase { grid-template-columns: 1fr; }
+            h1 { font-size: 2.6rem; letter-spacing: 2px; }
+            .showcase { grid-template-columns: 1fr; gap: 20px;}
         }
     </style>
 </head>
@@ -153,28 +186,28 @@
 
     <div class="container">
         <section class="hero">
-            <div class="logo-wrapper">
-                <img src="1.png" alt="HexEditor" class="logo">
+            <div class="logo-box">
+                <img src="1.png" alt="HexEditor Industrial Bolt Logo" class="logo">
             </div>
             <h1>HexEditor</h1>
-            <p class="tagline">Простой способ открывать, изменять и шифровать любые файлы.</p>
+            <p class="tagline">ПРОСТОЙ СПОСОБ ОТКРЫВАТЬ, ИЗМЕНЯТЬ И ШИФРОВАТЬ ЛЮБЫЕ ФАЙЛЫ.</p>
             
             <a href="https://drive.google.com/file/d/1N8mReP9v1ueLn7HUBABu8rdgxGWduiwK/view?usp=drive_link" target="_blank" class="download-btn">
-                Скачать сейчас
+                СКАЧАТЬ ПАКЕТ
             </a>
         </section>
 
         <section class="showcase">
-            <div class="screen-card">
-                <img src="2.png" alt="Интерфейс программы">
+            <div class="screen-frame">
+                <img src="2.png" alt="Просмотр шестнадцатеричного кода">
             </div>
-            <div class="screen-card">
-                <img src="3.png" alt="Работа с кодом">
+            <div class="screen-frame">
+                <img src="3.png" alt="Промышленное шифрование Ghost-EXE">
             </div>
         </section>
 
         <footer>
-            HEXEDITOR &bull; LIGHTWEIGHT &bull; POWERFUL &bull; 2026
+            HEXEDITOR &bull; INDUSTRIAL TOOLKIT &bull; EST. 2026
         </footer>
     </div>
 
