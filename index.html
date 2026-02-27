@@ -3,58 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pardar Studio</title>
+    <title>HexEditor | Pardar Studio</title>
     <style>
         :root {
             --rust: #a65d37;
             --dark: #0a0a0a;
-            --panel: #141414;
             --text: #c4b9a9;
+            --accent-glow: rgba(166, 93, 55, 0.2);
         }
 
         body {
-            font-family: 'Courier New', monospace;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background-color: var(--dark);
             color: var(--text);
             margin: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
-        .card {
-            background: var(--panel);
-            width: 90%;
-            max-width: 600px;
-            border: 1px solid #222;
-            position: relative;
-            padding-bottom: 80px; /* Space for fixed download button */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-        }
-
-        .logo-area {
-            padding: 30px 20px;
+        /* --- ШАПКА --- */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
             text-align: center;
         }
 
         .logo {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             height: auto;
+            filter: drop-shadow(0 0 30px var(--accent-glow));
         }
 
-        /* --- LARGE SLIDER --- */
-        .slider-wrapper {
-            position: relative;
+        /* --- ГАЛЕРЕЯ (БОЛЬШАЯ) --- */
+        .gallery-section {
             width: 100%;
-            background: #000;
+            max-width: 1000px;
+            position: relative;
+            margin: 20px 0;
         }
 
         .slider {
             display: flex;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            border: 1px solid #222;
+            background: #000;
         }
 
         .slider img {
@@ -63,98 +60,101 @@
             display: block;
         }
 
-        /* --- NAVIGATION BUTTONS --- */
+        /* Кнопки навигации */
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: var(--rust);
-            border: 1px solid var(--rust);
-            padding: 15px 20px;
+            border: 2px solid var(--rust);
+            width: 60px;
+            height: 60px;
             cursor: pointer;
-            font-weight: bold;
             font-size: 1.5rem;
             z-index: 10;
             transition: 0.3s;
-        }
-
-        .nav-btn:hover {
-            background: var(--rust);
-            color: var(--dark);
-        }
-
-        .prev { left: 10px; }
-        .next { right: 10px; }
-
-        /* --- FIXED DOWNLOAD BUTTON --- */
-        .download-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: var(--panel);
-            border-top: 1px solid #222;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .btn {
-            width: 90%;
+        .nav-btn:hover {
             background: var(--rust);
-            color: var(--dark);
-            text-decoration: none;
+            color: #000;
+        }
+
+        .prev { left: -30px; }
+        .next { right: -30px; }
+
+        /* --- КНОПКА СКАЧАТЬ --- */
+        .download-section {
+            margin: 40px 0;
             text-align: center;
-            padding: 15px 0;
-            font-size: 1.5rem;
+        }
+
+        .download-btn {
+            background: var(--rust);
+            color: #000;
+            text-decoration: none;
+            padding: 25px 80px;
+            font-size: 1.8rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.2s;
+            letter-spacing: 3px;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 10px 40px var(--accent-glow);
         }
 
-        .btn:hover {
+        .download-btn:hover {
+            transform: translateY(-5px);
             filter: brightness(1.2);
-            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(166, 93, 55, 0.4);
         }
 
+        /* --- ПОДВАЛ --- */
         footer {
-            text-align: center;
-            padding: 10px;
-            font-size: 0.7rem;
+            margin-top: auto;
+            padding: 40px;
+            font-size: 0.8rem;
             color: #444;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 1100px) {
+            .prev { left: 10px; }
+            .next { right: 10px; }
+            .logo { max-width: 80%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="logo-area">
-            <img src="1.png" alt="Pardar Logo" class="logo">
-        </div>
+    <header>
+        <img src="1.png" alt="Logo" class="logo">
+    </header>
 
-        <div class="slider-wrapper">
-            <button class="nav-btn prev" onclick="moveSlider(-1)">&lt;</button>
-            <div class="slider" id="slider">
-                <img src="2.png" alt="Screenshot 1">
-                <img src="3.png" alt="Screenshot 2">
-            </div>
-            <button class="nav-btn next" onclick="moveSlider(1)">&gt;</button>
+    <div class="gallery-section">
+        <button class="nav-btn prev" onclick="moveSlider(-1)">&#10094;</button>
+        <div class="slider" id="slider">
+            <img src="2.png" alt="Скриншот 1">
+            <img src="3.png" alt="Скриншот 2">
         </div>
-
-        <div style="padding: 20px; text-align: center;">
-            <p style="font-size: 0.9rem; opacity: 0.6;">Open • Edit • Encrypt</p>
-            <footer>MADE BY PARDAR STUDIO, 2026</footer>
-        </div>
-
-        <div class="download-bar">
-            <a href="https://drive.google.com/file/d/1N8mReP9v1ueLn7HUBABu8rdgxGWduiwK/view?usp=drive_link" target="_blank" class="btn">
-                СКАЧАТЬ
-            </a>
-        </div>
+        <button class="nav-btn next" onclick="moveSlider(1)">&#10095;</button>
     </div>
+
+    <div class="download-section">
+        <a href="https://drive.google.com/file/d/1N8mReP9v1ueLn7HUBABu8rdgxGWduiwK/view?usp=drive_link" target="_blank" class="download-btn">
+            СКАЧАТЬ СЕЙЧАС
+        </a>
+    </div>
+
+    <footer>
+        РАЗРАБОТАНО PARDAR STUDIO &bull; 2026
+    </footer>
 
     <script>
         const slider = document.getElementById('slider');
